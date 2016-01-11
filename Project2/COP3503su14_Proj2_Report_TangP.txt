@@ -1,0 +1,312 @@
+COP3503 SUMMER 2014
+Programmer's Guide and Report for COP3503su14_Proj1_TangP
+
+Philly Tang
+Thu 19 Jun 2014 01:59:15 PM EDT 
+
+Purpose of Program
+COP3503su14_Proj2_TangP is to allow users to do the following commands: 
+0.	exit
+1.	input file <filename>: open and read a list from a file to the current multiset
+2.	union file <filename>: open and union a multiset from a file with the current multiset
+3.	subtract file <filename>: open and subtract multiset from a file from the current multiset
+4.	difference file <filename>: open and find the difference between a multiset from a file and the current multiset
+5.	intersect file <filename>: open and find the intersection between a multiset from a file and the current multiset
+6.	reset current multiset to the empty multiset
+7.	output file <filename>: open and write the current multiset to a file 
+8.	print current multiset to the console
+9.	find <item name>: test if <item name> is in the current multiset
+10.	insert <item name> <count>: add <item name> to the current multiset with number <count> if <item name> is not in the current multiset, or increase <item name>'s number by <count> if it is
+11.	delete <item name>: remove <item name> from the current multiset if it is in it
+12.	reduce <item name> <count>: reduce the number of <item name> by <count>
+
+Options
+Command lines allows users to input for help in order to see the function of each commands. 
+In addition, users can also set to VERBOSE mode or NORMAL mode.
+
+Organization of Code
+The following functions that are defined are: 
+1)  AddSetWords(string text) -> Takes in the content from the txt file to the current set which is stored in the current array
+2)  AddNewWords(string text) -> Takes in the content from another txt file to the a new set which is stored in a new array 
+3)  void UnionWord(string text, int num) -> Function that takes adds the content from the txt file that was being "unioned" to the current set of the current array. It also checks and remove duplicates via nested loop
+4)  bool checkitem(string item) -> Checks whether or not if the following item is in the current array.
+5)  bool checknewitem(string item) -> Checks whether or not if the following item is in the new array.
+6)  void SubtractWords() -> This function removes the contents that are in both current and new set. 
+7)  DifferenceWords() -> This function takes in the new set that is inputted from the new txt file and adds to the current set. In addition, it removes both the duplicate and the original content from both the current and the new set of arrays
+8)  IntersectWords()  -> This function takes in the new set that is inputted from the new txt file and comapres it to the current set. The contents that are in both current and new set array will remain in the new array where the rest of the contents are removed.
+9)  ResetWord() -> This function resets the entire current set
+10) PrintWords() -> This function prints the current set
+11) Insert(string text, int num) -> This function inserts the content into the current with both the word and how many times that word is to be inserted in the current multiset. If the word already exists in the current set, then it just increments the word by the number you inserted. If the word doesn't exists in the current set, then it simplies inserts the new word and how many times.
+11) SearchWord(string text) -> Searches the following word that is being typed in the main function. Lets the users know whether or not the following word is searched.
+12) DeleteWord(string word3) -> Deletes the content from the current set in which the content is typed from the main function. Lets the users know whether or not the following word is deleted
+13) Reduce(string)
+14) int main() -> This is the main function where the users can implement the following commands and set VERBOSE, SILENT, NORMAL mode on or off.
+ 
+
+Known Bugs
+1) The menu main.cpp would "close" if the following input is not an integers
+2) If the user inputs option 7, the content saved to the file created through option 7 is different from the current set.
+3) If the user chooses option 10,11, or 12 without inputting a file into the current set, then an infinite loop will occur.
+4) If the user chooses silent mode, any file inputted for options 2,3,4,5 will respond with an error message. 
+
+
+Testing
+Testing is done based on by checking every combination of the command options. 
+Results were as expected. Script of testing session follows.
+
+  pwd
+
+Philly@Philly ~/Project2
+$ ./project2
+0. exit
+1. input file <filename>: open and read a list from a file to the current list
+2. union file <filename>: open and union a set from a file with the current set
+3. subtract file <filename>: open and subtract set from a file from the current set
+4. difference file <filename>: open and find the difference between a set from a file and the current set
+5. intersect file <filename>: open and find the intersection between a set from a file and the current set
+6. reset current set to the empty set
+7. output file <filename>: open and write the current set to a file
+8. print current set to the console
+9. find <item name>: test if <item name> is in the current set
+10. insert <item name> <count>: add <item name> to the current multiset with number <count>
+if <item name> is not in the current multiset, or increase <item name>'s number by <count>
+11. delete <item name>: remove <item name> from the current set if it is in it
+12. reduce <item name> <count>: reduce the number of <item name> by <count>
+13. verbose output
+14. normal output
+15. silent output
+16. help
+17. Find Max
+> 1
+Type the file you want to input
+a.txt
+New set loaded
+> 2
+Type the file you want to union with the current set
+a.txt
+Union loaded
+> 8
+Current set :
+foo 10
+bar 8
+baz 4
+boz 2
+> 3
+Type the file you want to subtract
+b.txt
+Subtraction completed
+> 8
+Current set :
+foo 6
+bar 4
+boz 2
+> 5
+Which file do you want to intersect ?
+b.txt
+Intersect completed
+> 8
+Current set :
+foo 6
+bar 4
+> 0
+
+Philly@Philly ~/Project2
+$ ./project2
+0. exit
+1. input file <filename>: open and read a list from a file to the current list
+2. union file <filename>: open and union a set from a file with the current set
+3. subtract file <filename>: open and subtract set from a file from the current set
+4. difference file <filename>: open and find the difference between a set from a file and the current set
+5. intersect file <filename>: open and find the intersection between a set from a file and the current set
+6. reset current set to the empty set
+7. output file <filename>: open and write the current set to a file
+8. print current set to the console
+9. find <item name>: test if <item name> is in the current set
+10. insert <item name> <count>: add <item name> to the current multiset with number <count>
+if <item name> is not in the current multiset, or increase <item name>'s number by <count>
+11. delete <item name>: remove <item name> from the current set if it is in it
+12. reduce <item name> <count>: reduce the number of <item name> by <count>
+13. verbose output
+14. normal output
+15. silent output
+16. help
+17. Find Max
+> 1
+Type the file you want to input
+a.txt
+New set loaded
+> 8
+Current set :
+foo 5
+bar 4
+baz 2
+boz 1
+> 2
+Type the file you want to union with the current set
+b.txt
+Union loaded
+> 8
+Current set :
+foo 9
+bar 8
+baz 6
+boz 1
+buz 4
+> 9
+Enter the word that you want to search
+foo
+Item foo found  with a count of 9
+> 9
+Enter the word that you want to search
+kiwi
+Item kiwi  not found
+> 3
+Type the file you want to subtract
+b.txt
+Subtraction completed
+> 8
+Current set :
+foo 5
+bar 4
+baz 2
+boz 1
+> 10
+Enter the word that you want to add
+kiwi 9
+kiwi inserted with 9 count
+> 8
+Current set :
+foo 5
+bar 4
+baz 2
+boz 1
+kiwi 9
+> 12
+Enter the word that you want to reduce
+kiwi 2
+kiwi count reduced to   2 count
+> 8
+Current set :
+foo 5
+bar 4
+baz 2
+boz 1
+kiwi 7
+> 10
+Enter the word that you want to add
+bar -3
+bar inserted with 1 count
+> 8
+Current set :
+foo 5
+bar 1
+baz 2
+boz 1
+kiwi 7
+> 13
+0. exit
+1. input file <filename>:
+2. union file <filename>:
+3. subtract file <filename>:
+4. difference file <filename>:
+5. intersect file <filename>:
+6. reset
+7. output file <filename>:
+8. print current set
+9. find <item name>:
+10. insert <item name>:
+11. delete <item name>:
+12. reduce <iten name>
+13. verbose output
+14. normal output
+15. silent output
+16. help
+17. Find Max
+> 8
+Current set :
+foo 5
+bar 1
+baz 2
+boz 1
+kiwi 7
+0. exit
+1. input file <filename>:
+2. union file <filename>:
+3. subtract file <filename>:
+4. difference file <filename>:
+5. intersect file <filename>:
+6. reset
+7. output file <filename>:
+8. print current set
+9. find <item name>:
+10. insert <item name>:
+11. delete <item name>:
+12. reduce <iten name>
+13. verbose output
+14. normal output
+15. silent output
+16. help
+17. Find Max
+> 16
+0. exit
+1. input file <filename>: open and read a list from a file to the current list
+2. union file <filename>: open and union a set from a file with the current set
+3. subtract file <filename>: open and subtract set from a file from the current set
+4. difference file <filename>: open and find the difference between a set from a file and the current set
+5. intersect file <filename>: open and find the intersection between a set from a file and the current set
+6. reset current set to the empty set
+7. output file <filename>: open and write the current set to a file
+8. print current set to the console
+9. find <item name>: test if <item name> is in the current set
+10. insert <item name>: add <item name> to the current set if it is not already in it
+11. delete <item name>: remove <item name> from the current set if it is in it
+12. reduce <item name> <count>: reduce the number of <item name> in the current multiset by <count> if it is in it
+13. verbose output
+14. normal output
+15. silent output
+16. help
+17. Find Max
+0. exit
+1. input file <filename>:
+2. union file <filename>:
+3. subtract file <filename>:
+4. difference file <filename>:
+5. intersect file <filename>:
+6. reset
+7. output file <filename>:
+8. print current set
+9. find <item name>:
+10. insert <item name>:
+11. delete <item name>:
+12. reduce <iten name>
+13. verbose output
+14. normal output
+15. silent output
+16. help
+17. Find Max
+> 14
+> 6
+Reset completed
+> 8
+Current set :
+> 1
+Type the file you want to input
+a.txt
+New set loaded
+> 8
+Current set :
+foo 5
+bar 4
+baz 2
+boz 1
+> 4
+Type file do you want to find the difference
+b.txt
+Difference Completed
+> 8
+Current set :
+foo 1
+baz 2
+boz 1
+buz 4
+>
