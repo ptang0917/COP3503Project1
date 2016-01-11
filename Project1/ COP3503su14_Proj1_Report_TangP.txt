@@ -1,0 +1,311 @@
+COP3503 SUMMER 2014
+Programmer's Guide and Report for COP3503su14_Proj1_TangP
+
+Philly Tang
+Thu 05 Jun 2014 01:59:15 PM EDT 
+
+Purpose of Program
+COP3503su14_Proj1_TangP is to allow users to do the following commands: 
+1) input txt file to the current set
+2) combine the current set with another txt file set 
+3) subtracting the current set from a new set 
+4) find the difference between the current and the new set,  
+5) find the similar contetn between the current and the new set of the txt file 
+6) reset the current set
+7) "Save" the current set to another txt file
+8) print contents from the current set
+9) search anything from the current set 
+10) add anything rom the current set, 
+11) delete anything from the current set. 
+
+Options
+Command lines allows users to input for help in order to see the function of each commands. 
+In addition, users can also set to VERBOSE mode or NORMAL mode.
+
+Organization of Code
+The following functions that are defined are: 
+1)  AddSetWords(string text) -> Takes in the content from the txt file to the current set which is stored in the current array
+2)  AddNewWords(string text) -> Takes in the content from another txt file to the a new set which is stored in a new array 
+3)  void UnionWord() -> Function that takes adds the content from the txt file that was being "unioned" to the current set of the current array. It also checks and remove duplicates via nested loop
+4)  bool checkitem(string item) -> Checks whether or not if the following item is in the current array.
+5)  bool checknewitem(string item) -> Checks whether or not if the following item is in the new array.
+6)  void SubtractWords() -> This function removes the contents that are in both current and new set. 
+7)  DifferenceWords() -> This function takes in the new set that is inputted from the new txt file and adds to the current set. In addition, it removes both the duplicate and the original content from 
+                         both the current and the new set of arrays
+8)  IntersectWords()  -> This function takes in the new set that is inputted from the new txt file and comapres it to the current set. The contents that are in both current and new set array will remain in 
+                         the new array where the rest of the contents are removed.
+9)  ResetWord()       -> This function resets the entire current set
+10) PrintWords()      -> This function prints the current set
+11) SearchWord(string text) -> Searches the following word that is being typed in the main function. Lets the users know whether or not the following word is searched.
+12) DeleteWord(string word3) -> Deletes the content from the current set in which the content is typed from the main function. Lets the users know whether or not the following word is deleted
+13) int main() -> This is the main function where the users can implement the following commands and set VERBOSE, SILENT, NORMAL mode on or off.
+
+Known Bugs
+COP3503su14_Proj1_TangP would "close" if the following input is not an integers
+If the users resets the current set with option 6, load f1 to the current set with option 1, and union the current set with another file with option 2, then when printing the current set, the output would be different from union the current set without resetting the current set with option 6.
+
+
+Testing
+Testing is done based on by checking every combination of the command options. 
+Results were as expected. Script of testing session follows.
+
+Thu 05 Jun 2014 03:21:04 PM EDT 
+
+lin113-18:122% ./a.out
+0. exit
+1. input file <filename>: open and read a list from a file to the current list
+2. union file <filename>: open and union a set from a file with the current set
+3. subtract file <filename>: open and subtract set from a file from the current set
+4. difference file <filename>: open and find the difference between a set from a file and the current set
+5. intersect file <filename>: open and find the intersection between a set from a file and the current set
+6. reset current set to the empty set
+7. output file <filename>: open and write the current set to a file
+8. print current set to the console
+9. find <item name>: test if <item name> is in the current set
+10. insert <item name>: add <item name> to the current set if it is not already in it
+11. delete <item name>: remove <item name> from the current set if it is in it
+12. verbose output
+13. normal output
+14. silent output
+15. help
+> 8
+> 1
+Type the file you want to input
+f1
+New set loaded
+> 8
+banana
+apple
+pineapple
+grapefruit
+orange
+pear
+grape
+lime
+lemon
+> 9
+Enter the word that you want to search
+banana
+Item banana found 
+> 9
+Enter the word that you want to search
+lemon
+Item lemon found 
+> 9
+Enter the word that you want to search
+kiwi
+Item kiwi  not found 
+> 10
+Enter the word that you want to add
+kiwi
+Item kiwi inserted
+> 8
+banana
+apple
+pineapple
+grapefruit
+orange
+pear
+grape
+lime
+lemon
+kiwi
+> 11
+Enter the word that you want to delete
+apple
+delete completed
+> 8
+banana
+pineapple
+grapefruit
+orange
+pear
+grape
+lime
+lemon
+kiwi
+> 9
+Enter the word that you want to search
+apple
+Item apple  not found 
+> 9
+Enter the word that you want to search
+kiwi
+Item kiwi found 
+> 14
+8
+banana
+pineapple
+grapefruit
+orange
+pear
+grape
+lime
+lemon
+kiwi
+12
+0. exit
+1. input file <filename>: 
+2. union file <filename>: 
+3. subtract file <filename>: 
+4. difference file <filename>: 
+5. intersect file <filename>: 
+6. reset 
+7. output file <filename>:
+8. print current set 
+9. find <item name>: 
+10. insert <item name>: 
+11. delete <item name>: 
+12. verbose output
+13. normal output
+14. silent output
+15. help
+> 2
+Type the file you want to union with the current set
+f2
+Union loaded
+0. exit
+1. input file <filename>: 
+2. union file <filename>: 
+3. subtract file <filename>: 
+4. difference file <filename>: 
+5. intersect file <filename>: 
+6. reset 
+7. output file <filename>:
+8. print current set 
+9. find <item name>: 
+10. insert <item name>: 
+11. delete <item name>: 
+12. verbose output
+13. normal output
+14. silent output
+15. help
+> 13
+> 8
+banana
+pineapple
+grapefruit
+orange
+pear
+grape
+lime
+lemon
+kiwi
+mango
+guanabana
+lychee
+avocado
+nispero
+guava
+carambola
+> 6
+Reset completed
+> 8
+> 1
+Type the file you want to input
+f2
+New set loaded
+> 8
+banana
+mango
+guanabana
+lychee
+avocado
+lime
+nispero
+guava
+carambola
+> 3
+Type the file you want to subtract
+f1
+Subtraction completed
+> 8
+mango
+guanabana
+lychee
+avocado
+nispero
+guava
+carambola
+> 6
+Reset completed
+> 1
+Type the file you want to input
+f1
+New set loaded
+> 4
+Type file do you want to find the difference
+f2
+Difference Completed
+> 8
+apple
+pineapple
+grapefruit
+orange
+pear
+grape
+lemon
+mango
+guanabana
+lychee
+avocado
+nispero
+guava
+carambola
+> 6
+Reset completed
+> 1
+Type the file you want to input
+f1
+New set loaded
+> 8
+banana
+apple
+pineapple
+grapefruit
+orange
+pear
+grape
+lime
+lemon
+> 5
+Which file do you want to intersect ?
+f2
+Intersect completed 
+> 8
+banana
+lime
+> 7
+Output file name: intersection
+Saved to intersection
+> 6
+Reset completed
+> 1
+Type the file you want to input
+f1
+New set loaded
+> 2
+Type the file you want to union with the current set
+f2
+Union loaded
+> 8
+banana
+apple
+pineapple
+grapefruit
+orange
+pear
+grape
+lime
+lemon
+mango
+guanabana
+lychee
+avocado
+nispero
+guava
+carambola
+
+> 0
+
+
